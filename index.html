@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web with Telegram</title>
+    <style>
+        @import url(https://fonts.bunny.net/css?family=doppio-one:400);
+
+        :root {
+            --clr-txt: rgb(8, 47, 73);
+            --clr-border: rgb(8, 47, 73);
+            --clr-cta: rgb(2, 132, 199);
+            --link-bg: linear-gradient(90deg, #FF5722, #FFC107);
+            --link-hover: #f39c12;
+            --link-border: #e67e22;
+            --bounce-distance: 10px;
+        }
+
+        body {
+            background: white;
+            color: rgb(203, 213, 225);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-family: system-ui;
+            background-image: radial-gradient(var(--clr-border), black);
+        }
+
+        .radio-btn-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .radio-btn-group input[type="radio"] {
+            display: none;
+        }
+
+        .radio-btn-group label {
+            background: var(--clr-cta);
+            padding: 15px 30px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .radio-btn-group label:hover {
+            background: rgb(0, 105, 165);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .main-content {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .main-content a {
+            display: inline-block;
+            margin: 20px;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: var(--link-bg);
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid transparent;
+            transform: translateY(0);
+        }
+
+        .main-content a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            background: var(--link-hover);
+            border: 3px solid var(--link-border);
+        }
+
+        .main-content a:active {
+            transform: translateY(var(--bounce-distance));
+            background: var(--link-bg);
+        }
+
+        .main-content a:focus {
+            outline: none;
+            animation: bounce 0.3s ease-in-out;
+        }
+
+        /* Keyframe animation for bouncing effect */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        #questionText {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="questionContainer">
+        <h2 id="questionText">Do you use Telegram?</h2>
+        <div class="radio-btn-group">
+            <input type="radio" name="telegram-option" value="yes" id="yes" />
+            <label for="yes" onclick="handleYes()">Yes</label>
+        </div>
+        <div class="radio-btn-group">
+            <input type="radio" name="telegram-option" value="no" id="no" />
+            <label for="no" onclick="handleNo()">No</label>
+        </div>
+    </div>
+
+    <!-- Main content section with links -->
+    <div class="main-content" id="mainContent">
+        <h1>Welcome to the Adult 18+ Page</h1>
+        <a href="https://t.me/MidasRWA_bot/app?startapp=ref_25e58945-1ef1-4aa1-bb96-c0dd1d12841d" target="_blank">Click 18+ Link 1</a>
+        <a href="https://t.me/blum/app?startapp=ref_LsVxMHfqXc" target="_blank">Click 18+ Link 2</a>
+    </div>
+
+    <script>
+        function handleYes() {
+            document.getElementById("questionContainer").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+            window.location.href = 'https://t.me/PAWSOG_bot/PAWS?startapp=WZWswyx2';
+        }
+
+        function handleNo() {
+            document.getElementById("questionContainer").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+            window.location.href = 'https://play.google.com/store/apps/details?id=org.telegram.messenger';
+            localStorage.setItem('telegramChoice', 'no');
+
+            // Re-display the question after 1 second if 'No' is clicked
+            setTimeout(function() {
+                document.getElementById("mainContent").style.display = "none";
+                document.getElementById("questionContainer").style.display = "block";
+                localStorage.removeItem('telegramChoice'); // Resetting choice
+            }, 1000); // 1 second delay
+        }
+
+        window.onload = function() {
+            // Ensure no stored choices when the page is loaded (reset page)
+            localStorage.removeItem('telegramChoice');
+
+            let userChoice = localStorage.getItem('telegramChoice');
+            if (userChoice === 'no') {
+                document.getElementById("questionContainer").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            }
+        };
+
+        // Reset data when the page is unloaded (close tab or refresh)
+        window.onbeforeunload = function() {
+            localStorage.removeItem('telegramChoice');
+        };
+    </script>
+
+</body>
+</html>
